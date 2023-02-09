@@ -1,0 +1,16 @@
+{
+  "name": "expressweb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app,js,hbs"
+  },
+  "author": "pankaj technical",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "hbs": "^4.1.1",
+    "nodemon": "^2.0.20"
+  }
+}
