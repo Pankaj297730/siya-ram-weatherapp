@@ -22,12 +22,15 @@
                     <div class="top_layer">
                         <p id="day">Tuesday</p>
                         <p id="today_data">2 DEC</p>
-
+                        <p id="CurrentTime"></p>
+                        
+ 
                     </div>
                     <div class="main_layer">
-                        <p id="city_name">Get Output here</p>
-                        <div class="middle_layer data_hide">
-                            <p id="temp"><span id="tempreal_value">0 </span><sup class="tempc">o</sup><span class="tempC">C</span></p>
+                        <p id="city_name">Get Output </p>
+                        <div class="middle_layer dataa_hide">
+                            
+                            <p id="temp"><span id="tempreal_value">0 </span><sup id="zero">o</sup><span class="tempC">C</span></p>
                             <p id="temp_status"> <i class="fa fa-cloud" aria-hidden="true"></i> </p>
                         </div>
                     </div>
@@ -40,25 +43,30 @@
 
      <script src="js/main.js"></script>
      <script>
+                          GetTime(); 
+function GetTime(){ 
+    var CurrentTime = new Date()
+     var hours = CurrentTime.getHours()
+     var minute = CurrentTime.getMinutes() 
+     var second = CurrentTime.getSeconds() 
+     
+   let periods = "AM";
+   
+   if (hours > 11) {
+       periods = "PM";
+       if (hours>12) hours -= 12;
+   }
+  if (minute < 10){
+   minute = "0" + minute;
+  }
+
+             var GetCurrentTime = hours + ":" + minute + " " + periods + " ";
         
-        const getCurrentDay = () => {
-            let weekday = new Array(7);
-            weekday[0] = "Sunday";
-            weekday[1] = "Monday";
-            weekday[2] = "Tuesday";
-            weekday[3] = "Wednesday";
-            weekday[4] = "Thursday";
-            weekday[5] = "Friday";
-            weekday[6] = "Saturday";
-            let currentTime = new Date();
-             days = weekday[currentTime.getDay()];
-             let day = document.getElementById('day');
-             
-             day.innerText = days;
+            document.getElementById("CurrentTime").innerHTML = GetCurrentTime; setTimeout(GetTime,1000) }
+        
+  
 
-        };
 
-          getCurrentDay();
      </script>
 </body>
 </html>

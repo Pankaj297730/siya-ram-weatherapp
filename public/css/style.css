@@ -26,6 +26,7 @@ body{
 }
 .row{
     margin:0;
+    
 }
 .main_menu {
     background-color: var(--main-bg);
@@ -64,6 +65,11 @@ body{
     100%{
         transform: rotate(360deg);
     }
+}
+
+.today_data{
+    margin-left: 5rem;
+    color: #000;
 }
 
 /*main header*/

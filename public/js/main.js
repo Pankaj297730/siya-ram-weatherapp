@@ -8,6 +8,8 @@ const temp_status = document.getElementById('temp_status');
 
 const data_hide = document.querySelector('.middle_layer');
 
+const dataa_hide = document.querySelector('.main_layer');
+
 
 const getInfo = async(event) => {
     event.preventDefault();
@@ -15,8 +17,13 @@ const getInfo = async(event) => {
 
     if(cityVal === ""){
         city_name.innerText = `Please write the city name before you search`;
+        document.getElementById("temp").style.display = "none";
+        document.getElementById("temp_status").style.display = "none";
+        
+
 
         data_hide.classList.add('data_hide');
+       
    
   }else{
      try{
@@ -36,7 +43,7 @@ const getInfo = async(event) => {
 
               if (tempMood == "Clear") { 
 
-               temp_status.innerHTML = "<i class='fa fa-sun' style='color: #eccc68;'></i>";
+               temp_status.innerHTML = "<i id='clouds' class='fa fa-sun' style='color: #eccc68;'></i>";
              } else if (tempMood == "Clouds") {
                
                temp_status.innerHTML =
@@ -55,10 +62,16 @@ const getInfo = async(event) => {
                }
 
                data_hide.classList.remove('data_hide');
+               document.getElementById("temp").style.display = "flex";
+               document.getElementById("temp_status").style.display = "flex";
+               document.getElementById("zero").style.top = "3.12rem";
         
      }catch{
         city_name.innerText = `Please enter the city name properly`;
         data_hide.classList.add('data_hide');
+        dataa_hide.classList.add('dataa_hide');
+        document.getElementById("temp").style.display = "none";
+        document.getElementById("temp_status").style.display = "none";
      }
       
   }
@@ -67,7 +80,25 @@ const getInfo = async(event) => {
 
 submitBtn.addEventListener('click', getInfo);
 
-// t0 check the date//
+// to check the date//
+const getCurrentDay = () => {
+   let weekday = new Array(7);
+   weekday[0] = "Sunday";
+   weekday[1] = "Monday";
+   weekday[2] = "Tuesday";
+   weekday[3] = "Wednesday";
+   weekday[4] = "Thursday";
+   weekday[5] = "Friday";
+   weekday[6] = "Saturday";
+   let currentTime = new Date();
+    days = weekday[currentTime.getDay()];
+    let day = document.getElementById('day');
+    
+    day.innerText = days;
+};
+ getCurrentDay();
+
+
 const curDate = document.getElementById('today_data');
 const getCurrentTime = () => {
    var months = [
@@ -89,20 +120,9 @@ const getCurrentTime = () => {
    var month = months[now.getMonth() + 1];
    var date = now.getDate(); 
 
-   let hours = now.getHours();
-   let mins = now.getMinutes();
 
-   let periods = "AM";
-   
-   if (hours > 11) {
-       periods = "PM";
-       if (hours>12) hours -= 12;
-   }
-  if (mins < 10){
-   mins = "0" + mins;
-  }
   
- return `   ${date}  ${month}  | ${hours}:${mins} ${periods}`
+ return `   ${date}  ${month}`
 };
    
   
